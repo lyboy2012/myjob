@@ -15,4 +15,10 @@
     <item name="job_project_name" type="id"/>
     <item name="job_assign_person" type="id"/>
     <item name="job_end_time" type="id"/>
+
+
+    <item name="menu_id_01" type="id"/>
+    <item name="menu_id_02" type="id"/>
+    <item name="menu_id_03" type="id"/>
+    <item name="menu_id_04" type="id"/>
 </resources>

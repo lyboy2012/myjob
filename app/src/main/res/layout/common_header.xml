@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/header_bg"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:id="@+id/common_header">
 
     <Button
         android:id="@id/back_btn"
@@ -13,6 +14,7 @@
 
 
     <TextView
+        android:id="@id/header_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -26,5 +28,6 @@
         android:id="@id/more_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/more_btn_state"/>
+        android:background="@drawable/more_btn_state"
+        android:visibility="invisible"/>
 </LinearLayout>

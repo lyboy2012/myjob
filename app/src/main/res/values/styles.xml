@@ -28,4 +28,12 @@
         <item name="android:activityCloseExitAnimation">@android:anim/slide_out_right</item>
 
     </style>
+    <style name="menu_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/menu_text</item>
+    </style>
 </resources>

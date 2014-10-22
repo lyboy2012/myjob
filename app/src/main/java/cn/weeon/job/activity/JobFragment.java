@@ -102,7 +102,7 @@ public class JobFragment extends BaseFragment {
     }
 
     public void updateJobsAsync() {//更新
-        UTF8JsonObjectRequest jsonObjectRequest = new UTF8JsonObjectRequest("http://192.168.100.64:8888", null,
+        UTF8JsonObjectRequest jsonObjectRequest = new UTF8JsonObjectRequest("http://192.168.100.64:8888/jobs", null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
