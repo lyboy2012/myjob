@@ -1,24 +1,19 @@
 package cn.weeon.job.activity;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.ParseError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -62,11 +57,21 @@ public class JobFragment extends BaseFragment {
         swipeContainer.setListView(jobList);
         dataSource = new ArrayList<Map<String, Object>>();
         adapter = new JobAdapter(this.getActivity(), dataSource);
+        jobList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                startActivity(new Intent(JobFragment.this.getActivity(), JobDetailActivity.class));
+
+            }
+        });
        // jobList.addFooterView(mListViewFooter);
         swipeContainer.setLoading(true);
         jobList.setAdapter(adapter);
         fetchJobsAsync(0);
 
+        //设置颜色
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
@@ -131,7 +136,7 @@ public class JobFragment extends BaseFragment {
     }
     public void fetchJobsAsync(int page) {
 
-        UTF8JsonObjectRequest jsonObjectRequest = new UTF8JsonObjectRequest("http://192.168.100.64:8888", null,
+        UTF8JsonObjectRequest jsonObjectRequest = new UTF8JsonObjectRequest("http://192.168.100.64:8888/jobs", null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

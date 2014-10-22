@@ -15,14 +15,14 @@
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!--fragment-->
+    <!-- fragment -->
     <string name="job_fragment">项目工作</string>
     <string name="contact_fragment">通讯录</string>
     <string name="user_fragment">我的</string>
     <string name="setting_fragment">设置</string>
 
-    <!-- common-->
+    <!-- common -->
     <string name="load_msg">加载中...</string>
-
+    <string name="title_activity_job_detail">JobDetailActivity</string>
 
 </resources>

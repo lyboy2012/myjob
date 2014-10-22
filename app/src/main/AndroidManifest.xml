@@ -26,6 +26,10 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
+        <activity
+            android:name=".JobDetailActivity"
+            android:label="@string/title_activity_job_detail">
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

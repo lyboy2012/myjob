@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import cn.weeon.job.common.HttpUtil;
@@ -68,15 +69,22 @@ public class LoginActivity extends Activity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, IndexActivity.class));
-                finish();
-               /* JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://192.168.100.64:8888", null,
+
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://192.168.100.64:8888/login", null,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.d("TAG", response.toString());
-                                startActivity(new Intent(LoginActivity.this, IndexActivity.class));
-                                finish();
+                                try {
+                                    if(response.getInt("state")==1){
+                                        Log.d("TAG", response.toString());
+                                        startActivity(new Intent(LoginActivity.this, IndexActivity.class));
+                                        finish();
+
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
 
                             }
                         }, new Response.ErrorListener() {
@@ -86,7 +94,7 @@ public class LoginActivity extends Activity {
                     }
                 });
                 mQueue.add(jsonObjectRequest);
-*/
+
 
             }
         });

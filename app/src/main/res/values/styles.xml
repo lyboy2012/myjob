@@ -20,4 +20,12 @@
         <item name="android:textColor">#606060</item>
         <item name="android:background">@drawable/rounded_login_auto</item>
     </style>
+    <style name="transitionAnimation" parent="AppTheme">
+
+        <item name="android:activityOpenEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:activityOpenExitAnimation">@android:anim/slide_out_right</item>
+        <item name="android:activityCloseEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@android:anim/slide_out_right</item>
+
+    </style>
 </resources>
