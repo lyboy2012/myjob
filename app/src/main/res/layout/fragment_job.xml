@@ -1,0 +1,25 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_0"
+    tools:context="cn.weeon.job.activity.JobFragment">
+    <!--<include layout="@layout/common_header"/>-->
+    <!-- TODO: Update blank fragment layout -->
+
+    <cn.weeon.job.common.RefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@id/job_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@null"
+            android:divider="#7fcccccc"
+            android:dividerHeight="1px"
+            android:listSelector="#ffffff"></ListView>
+    </cn.weeon.job.common.RefreshLayout>
+
+</FrameLayout>

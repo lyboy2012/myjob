@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="menu_text">
+        　　
+        <item>项目工作</item>
+        <item>通讯录</item>
+        <item>我的</item>
+        <item>设置</item>
+        　　
+    </string-array>
+</resources>
