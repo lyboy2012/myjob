@@ -13,8 +13,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
@@ -33,7 +33,7 @@ public class IndexActivity extends FragmentActivity implements SettingFragment.O
     RequestQueue mQueue = null;
     ImageLoader imageLoader = null;
 
-
+    TextView popMsg;
 
 
     private FragmentTabHost tabHost;
@@ -86,9 +86,13 @@ public class IndexActivity extends FragmentActivity implements SettingFragment.O
     }
 
     private View getItemView(int index) {
-        View view = inflater.inflate(R.layout.nav_item,  // tab widget is the parent 不加tabwidget
+        RelativeLayout view = (RelativeLayout)inflater.inflate(R.layout.nav_item,  // tab widget is the parent 不加tabwidget
                 // 不显示
                 null);
+        if(index==2){
+           popMsg =(TextView)inflater.inflate(R.layout.pop_msg,view,false);
+            view.addView(popMsg);
+        }
         ImageView imageView = (ImageView) view.findViewById(R.id.imageview);
         imageView.setImageResource(imageViewArray[index]);
         TextView textView = (TextView) view.findViewById(R.id.textview);

@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:background="@color/white_0"
     tools:context="cn.weeon.job.activity.JobFragment">
-    <!--<include layout="@layout/common_header"/>-->
-    <!-- TODO: Update blank fragment layout -->
+    <!--<include pop_msg="@pop_msg/common_header"/>-->
+    <!-- TODO: Update blank fragment pop_msg -->
 
     <cn.weeon.job.common.RefreshLayout
         android:id="@+id/swipe_container"
@@ -18,6 +18,7 @@
             android:layout_height="match_parent"
             android:cacheColorHint="@null"
             android:divider="#7fcccccc"
+            android:scrollbars="none"
             android:dividerHeight="1px"
             android:listSelector="#ffffff"></ListView>
     </cn.weeon.job.common.RefreshLayout>
