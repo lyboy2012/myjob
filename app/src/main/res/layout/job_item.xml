@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:background="@drawable/job_item_state">
 
     <com.android.volley.toolbox.NetworkImageView
         android:id="@id/job_assign_person_img"

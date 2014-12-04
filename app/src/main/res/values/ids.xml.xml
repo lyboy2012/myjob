@@ -4,6 +4,10 @@
     <item name="user_name" type="id"/>
     <item name="password" type="id"/>
     <item name="login_btn" type="id"/>
+    <!--index header-->
+
+    <item name="index_header_title" type="id"/>
+    <item name="search_btn" type="id"/>
     <!--common header-->
     <item name="back_btn" type="id"/>
     <item name="header_title" type="id"/>
@@ -15,6 +19,12 @@
     <item name="job_project_name" type="id"/>
     <item name="job_assign_person" type="id"/>
     <item name="job_end_time" type="id"/>
+    <!--setting-->
+    <item name="logout_btn" type="id"/>
+
+
+    <!--search activity-->
+    <item name="confirm_search" type="id"/>
 
 
     <item name="menu_id_01" type="id"/>

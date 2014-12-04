@@ -14,7 +14,6 @@ import com.android.volley.toolbox.NetworkImageView;
 import java.util.List;
 import java.util.Map;
 
-import cn.weeon.job.activity.IndexActivity;
 import cn.weeon.job.activity.R;
 
 /**
@@ -30,10 +29,10 @@ public class JobAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     private ImageLoader imageLoader;
 
-    public JobAdapter(Context context, List<Map<String, Object>> data) {
+    public JobAdapter(Context context, List<Map<String, Object>> data,ImageLoader imageLoader) {
         this.data = data;
-        layoutInflater = LayoutInflater.from(context);
-        imageLoader = ((IndexActivity)context).getImageLoader();
+        this.layoutInflater = LayoutInflater.from(context);
+        this.imageLoader = imageLoader;
 
     }
 
@@ -83,14 +82,14 @@ public class JobAdapter extends BaseAdapter {
         }
         viewHolder.jobAssignPersonImg.setDefaultImageResId(R.drawable.ic_launcher);
         viewHolder.jobAssignPersonImg.setErrorImageResId(R.drawable.ic_launcher);
-        viewHolder.jobAssignPersonImg.setImageUrl("http://qlogo3.store.qq.com/qzone/594842170/594842170/100?1304353445",
+        viewHolder.jobAssignPersonImg.setImageUrl("http://192.168.100.64:8888/images/ttx.png",
                 imageLoader);
         viewHolder.jobName.setText((String) data.get(position).get("jobName"));
-        viewHolder.jobProName.setText(Html.fromHtml("<font color='#5cb85c'>P</font> " + data.get(position).get("jobProName")));
-        viewHolder.jobEndTime.setText(Html.fromHtml("限时<font color='#d9534f'>" + data.get(position).get("jobEndTime") + "</font>"));
-        viewHolder.jobAssignPerson.setText(Html.fromHtml("由<font color='#f0ad4e'>" + data.get(position).get("jobAssignPerson") + "</font>分配"));
-
-
+        viewHolder.jobProName.setText(Html.fromHtml("<font color='#5cb85c'>" + data.get(position).get("jobProName")+"</font>"));
+        viewHolder.jobEndTime.setText(Html.fromHtml("配送<font color='#d9534f'>" + data.get(position).get("jobEndTime") + "</font>"));
+        viewHolder.jobAssignPerson.setText(Html.fromHtml("由<font color='#f0ad4e'>" + data.get(position).get("jobAssignPerson") + "</font>配送"));
+        viewHolder.jobId = (String)data.get(position).get("jobId");
+        viewHolder.time =  (String)data.get(position).get("jobEndTime");
         return convertView;
     }
 
@@ -100,5 +99,19 @@ public class JobAdapter extends BaseAdapter {
         TextView jobProName;
         TextView jobEndTime;
         TextView jobAssignPerson;
+        String jobId;
+        String time;
+
+        public String getJobId() {
+            return jobId;
+        }
+
+
+
+        public String getTime() {
+            return time;
+        }
+
+
     }
 }

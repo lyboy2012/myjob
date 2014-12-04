@@ -1,5 +1,9 @@
 package cn.weeon.job.activity;
 
+import android.app.SearchableInfo;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,15 +13,18 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -26,14 +33,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.weeon.job.common.BitmapCache;
+import cn.weeon.job.common.ConnectionChangeReceiver;
 import cn.weeon.job.common.HttpUtil;
+import cn.weeon.job.common.Util;
 
 public class IndexActivity extends FragmentActivity implements SettingFragment.OnFragmentInteractionListener{
     private static String TAG = "cn.weeon.job.activity.FragmentActivity";
+    private long exitTime = 0; // 退出时间，连续点击返回键记录间隔时间
     RequestQueue mQueue = null;
     ImageLoader imageLoader = null;
 
-    TextView popMsg;
+    TextView popMsg,indexTitle;
+    private Button searchBtn;
 
 
     private FragmentTabHost tabHost;
@@ -46,6 +57,8 @@ public class IndexActivity extends FragmentActivity implements SettingFragment.O
     private Class fragmentArray[] = { JobFragment.class, ContactFragment.class,
             UserFragment.class, SettingFragment.class };
 
+
+    private ConnectionChangeReceiver receiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +66,49 @@ public class IndexActivity extends FragmentActivity implements SettingFragment.O
         inflater = LayoutInflater.from(this);
         init();
     }
+
+    public void changeJobFragmentState(){
+       JobFragment jobF =  (JobFragment)list.get(0);
+       if(jobF!=null){
+           boolean isAvaliable = Util.NetWorkIsAvaliable(this);
+           jobF.showNetWorksState(isAvaliable);
+        }
+
+    }
     private void init(){
+        receiver = new ConnectionChangeReceiver(this);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver, filter);
+
+        initHeader();
         mQueue =  HttpUtil.getRequestQueue(this);
         imageLoader = new ImageLoader(mQueue, new BitmapCache());
         initTabHost();
         initPager();
     }
+    private void initHeader(){
+        indexTitle = (TextView)findViewById(R.id.index_header_title);
+        indexTitle.setText("未签收(1)");
+        searchBtn = (Button)findViewById(R.id.search_btn);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(IndexActivity.this, SearchActivity.class);
+
+                startActivity(intent);
+
+
+            }
+
+        });
+
+
+    }
+
+
     public ImageLoader getImageLoader(){
         return imageLoader;
     }
@@ -89,7 +139,7 @@ public class IndexActivity extends FragmentActivity implements SettingFragment.O
         RelativeLayout view = (RelativeLayout)inflater.inflate(R.layout.nav_item,  // tab widget is the parent 不加tabwidget
                 // 不显示
                 null);
-        if(index==2){
+        if(index==0){
            popMsg =(TextView)inflater.inflate(R.layout.pop_msg,view,false);
             view.addView(popMsg);
         }
@@ -115,7 +165,7 @@ public class IndexActivity extends FragmentActivity implements SettingFragment.O
     }
 
     private void initPager() {
-        JobFragment jf = new JobFragment();
+        JobFragment jf  = new JobFragment();
         ContactFragment cf = new ContactFragment();
         UserFragment uf = new UserFragment();
         SettingFragment sf = new SettingFragment();
@@ -182,5 +232,29 @@ public class IndexActivity extends FragmentActivity implements SettingFragment.O
             mQueue.cancelAll(this);
         }
 
+
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // unregisterReceiver(receiver);
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (KeyEvent.KEYCODE_BACK == keyCode) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                        Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/item_catalog"
+        style="@style/item_catalog" />
+
+    <LinearLayout
+        android:id="@+id/contact_item_bg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/contact_list_item"
+        android:orientation="horizontal"
+        android:padding="5dp" >
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/contact_head_img"
+            style="@style/contact_item_head"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/contact_item_title"
+                style="@style/contact_item_title" />
+
+            <TextView
+                android:id="@+id/contact_item_desc"
+                style="@style/contact_item_desc"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

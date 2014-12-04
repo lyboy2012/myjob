@@ -2,8 +2,14 @@ package cn.weeon.job.activity;
 
 import android.app.Activity;
 import android.net.Uri;
+import android.view.View;
+import android.widget.Button;
+
+import cn.weeon.job.common.Util;
 
 public class SettingFragment extends BaseFragment {
+
+    private Button logoutBtn;
 
     private OnFragmentInteractionListener mListener;
 
@@ -18,7 +24,20 @@ public class SettingFragment extends BaseFragment {
 
     @Override
     public void init() {
+        initLogoutBtn();
 
+    }
+
+    private void initLogoutBtn() {
+        logoutBtn = (Button) view.findViewById(R.id.logout_btn);
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Util.setUserInfo(SettingFragment.this.getActivity(),"");
+                SettingFragment.this.getActivity().finish();
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

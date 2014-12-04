@@ -70,4 +70,36 @@ public class HttpUtil {
         return list;
     }
 
+    public static List<Map<String,Object>> parseContacts(JSONObject response){
+        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+        Map<String,Object> map= null;
+
+        try {
+            if(response.getInt("state")==1){
+
+                JSONArray jobs = response.getJSONArray("data");
+                JSONObject job=null;
+                for (int i = 0; i < jobs.length(); i++) {
+                    job = jobs.optJSONObject(i);
+                    map = new HashMap<String,Object>();
+                    String userId = job.getString("userId");
+                    String head = job.getString("head");
+                    String userName = job.getString("userName");
+                    String telephone = job.getString("telephone");
+                    String desc = job.getString("desc");
+                    map.put("userId", userId);
+                    map.put("head", head);
+                    map.put("userName", userName);
+                    map.put("telephone", telephone);
+                    map.put("desc", desc);
+                    list.add(map);
+                }
+
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

@@ -23,7 +23,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.weeon.job.common.HttpUtil;
+import cn.weeon.job.common.UTF8JsonObjectRequest;
+import cn.weeon.job.common.Util;
 
 
 public class LoginActivity extends Activity {
@@ -70,12 +75,24 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://192.168.100.64:8888/login", null,
+                Map<String,String> map=new HashMap<String,String>();
+
+                map.put("username", userName.getText().toString().trim());
+                map.put("password", password.getText().toString().trim());
+
+                JSONObject params=new JSONObject(map);
+                UTF8JsonObjectRequest jsonObjectRequest = new UTF8JsonObjectRequest("http://192.168.100.64:8888/login", params,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
                                     if(response.getInt("state")==1){
+
+                                        String userId =response.getString("userId");
+                                        Util.setHistoryUserInfo(LoginActivity.this,userName.getText().toString().trim(),password.getText().toString().trim());
+
+                                        Util.setUserInfo(LoginActivity.this,userId);
+
                                         Log.d("TAG", response.toString());
                                         startActivity(new Intent(LoginActivity.this, IndexActivity.class));
                                         finish();
@@ -123,9 +140,10 @@ public class LoginActivity extends Activity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(LoginActivity.this, R.layout.login_auto_item, R.id.login_auto_item, new String[]{"abc","adc","afc", "bb"});
+                String[] serNames = Util.getHistoryUserInfo(LoginActivity.this);
 
-                userName.setAdapter(adapter);// 设置数据适配器
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(LoginActivity.this, R.layout.login_auto_item, R.id.login_auto_item,serNames);
+
                 userName.setAdapter(adapter);// 设置数据适配器
 
                 if (!TextUtils.isEmpty(charSequence)) {

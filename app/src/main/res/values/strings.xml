@@ -2,10 +2,10 @@
 <resources>
 
     <!-- 全局 -->
-    <string name="app_name">工作管理</string>
+    <string name="app_name">三千一</string>
     <string name="title_activity_index">IndexActivity</string>
     <!-- 欢迎 -->
-    <string name="welcome_title">员工日常工作管理</string>
+    <string name="welcome_title">溺水三千，只取一瓢</string>
     <!-- 登录 -->
     <string name="title_activity_login">LoginActivity</string>
     <string name="login_btn">登录</string>
@@ -16,13 +16,29 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- fragment -->
-    <string name="job_fragment">项目工作</string>
-    <string name="contact_fragment">通讯录</string>
+    <string name="job_fragment">订货单</string>
+    <string name="contact_fragment">购货单</string>
     <string name="user_fragment">我的</string>
     <string name="setting_fragment">设置</string>
+    <string name="logout_text">安全退出</string>
+
+    <!-- search activity -->
+    <string name="confirm_btn_text">立即查询</string>
 
     <!-- common -->
     <string name="load_msg">加载中...</string>
     <string name="title_activity_job_detail">JobDetailActivity</string>
+    <string name="title_activity_times_square">TimesSquareActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_search_result">SearchResultActivity</string>
+
+    <!--list view empty layout-->
+    <string name="empty_message">No items yet</string>
+    <string name="loading_message">Please wait</string>
+    <string name="error_message">Oops! Something wrong happened</string>
+
+    <string name="empty_button">Try again</string>
+    <string name="loading_button">Cancel</string>
+    <string name="error_button">Try again</string>
 
 </resources>

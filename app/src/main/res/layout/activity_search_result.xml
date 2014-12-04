@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.weeon.job.activity.SearchResultActivity">
+    <include layout="@layout/common_header"/>
+    <cn.weeon.job.common.RefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@id/job_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@null"
+            android:divider="#7fcccccc"
+            android:scrollbars="none"
+            android:dividerHeight="1px"
+            android:listSelector="#00000000"></ListView>
+    </cn.weeon.job.common.RefreshLayout>
+
+</LinearLayout>

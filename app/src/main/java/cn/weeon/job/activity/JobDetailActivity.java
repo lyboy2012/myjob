@@ -1,5 +1,6 @@
 package cn.weeon.job.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -18,17 +19,22 @@ import java.util.Map;
 
 import cn.weeon.job.Adapter.MenuItemAdapter;
 
-public class JobDetailActivity extends BaseActivity {
+public class JobDetailActivity extends BaseActivity{
 
     private static String TAG = "cn.weeon.job.activity.JobDetailActivity";
     private PopupWindow menuPopup;
     private View commonHeader;
 
+    private String time,jobId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_detail);
-        init("工作详细");
+        Intent intent = getIntent();
+
+        time = intent.getStringExtra("time");
+        jobId = intent.getStringExtra("jobId");
+        init(time);
     }
 
 
@@ -89,8 +95,11 @@ public class JobDetailActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MenuItemAdapter.ViewHolder holder = (MenuItemAdapter.ViewHolder) view.getTag();
+
                 Toast.makeText(JobDetailActivity.this,holder.getPopmenuName().getText(),Toast.LENGTH_LONG).show();
                 menuPopup.dismiss();
+                startActivity(new Intent(JobDetailActivity.this, TimesSquareActivity.class));
+
 
             }
         });
@@ -105,4 +114,6 @@ public class JobDetailActivity extends BaseActivity {
         menuPopup.setOutsideTouchable(true);
         menuPopup.setBackgroundDrawable(new BitmapDrawable(getResources()));
     }
+
+
 }

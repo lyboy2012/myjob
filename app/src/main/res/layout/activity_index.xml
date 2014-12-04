@@ -5,11 +5,7 @@
     android:orientation="vertical"
     tools:context=".IndexActivity">
 
-   <!-- <FrameLayout
-        android:id="@+id/realTabContent"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"></FrameLayout>-->
+    <include layout="@layout/index_header"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/realTabContent"

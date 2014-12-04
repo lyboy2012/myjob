@@ -20,7 +20,7 @@
             android:divider="#7fcccccc"
             android:scrollbars="none"
             android:dividerHeight="1px"
-            android:listSelector="#ffffff"></ListView>
+            android:listSelector="#00000000"></ListView>
     </cn.weeon.job.common.RefreshLayout>
 
 </FrameLayout>

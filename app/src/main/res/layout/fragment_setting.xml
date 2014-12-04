@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
     tools:context="cn.weeon.job.activity.SettingFragment">
 
     <!-- TODO: Update blank fragment pop_msg -->
@@ -9,5 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/setting_fragment" />
+
+    <Button
+        android:id="@id/logout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/red_btn_state"
+        android:padding="8dp"
+        android:text="@string/logout_text"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
 
 </FrameLayout>

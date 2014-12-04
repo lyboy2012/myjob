@@ -1,13 +1,33 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="cn.weeon.job.activity.ContactFragment">
 
     <!-- TODO: Update blank fragment pop_msg -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/contact_fragment" />
 
-</FrameLayout>
+
+        <ListView
+            android:id="@+id/contacts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:choiceMode="multipleChoice"
+            android:divider="#10000000"
+            android:dividerHeight="1dp"
+            android:fastScrollEnabled="false"
+            android:scrollbars="none"
+            android:listSelector="#00000000"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp" />
+
+        <cn.weeon.job.common.Sidebar
+            android:id="@+id/side_bar"
+            android:layout_width="30dip"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/dialog_letter">
+
+        </cn.weeon.job.common.Sidebar>
+
+</RelativeLayout>
